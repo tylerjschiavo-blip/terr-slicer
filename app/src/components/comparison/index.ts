@@ -3,6 +3,6 @@
  */
 
 export { KpiImprovementCards } from './KpiImprovementCards';
-export { AccountDistributionChart } from './AccountDistributionChart';
-export { AccountMovementTable } from './AccountMovementTable';
-export { ArrComparisonChart } from './ArrComparisonChart';
+export { default as AccountDistributionChart } from './AccountDistributionChart';
+export { default as AccountMovementTable } from './AccountMovementTable';
+export { default as ArrComparisonChart } from './ArrComparisonChart';

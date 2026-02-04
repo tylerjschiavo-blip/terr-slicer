@@ -321,7 +321,7 @@ function RepDistributionCharts() {
                 radius={[4, 4, 0, 0]}
               >
                 <LabelList 
-                  dataKey={(data: RepComparisonData) => data.beforeNormalARR + data.beforeHighRiskARR as any}
+                  dataKey={((data: RepComparisonData) => data.beforeNormalARR + data.beforeHighRiskARR) as any}
                   position="top" 
                   formatter={formatCurrency as any}
                   style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} 
@@ -342,7 +342,7 @@ function RepDistributionCharts() {
                 radius={[4, 4, 0, 0]}
               >
                 <LabelList 
-                  dataKey={(data: RepComparisonData) => data.afterNormalARR + data.afterHighRiskARR as any}
+                  dataKey={((data: RepComparisonData) => data.afterNormalARR + data.afterHighRiskARR) as any}
                   position="top" 
                   formatter={formatCurrency as any}
                   style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} 
@@ -388,7 +388,7 @@ function RepDistributionCharts() {
                 radius={[4, 4, 0, 0]}
               >
                 <LabelList 
-                  dataKey={(data: RepComparisonData) => data.beforeNormalAccounts + data.beforeHighRiskAccounts as any}
+                  dataKey={((data: RepComparisonData) => data.beforeNormalAccounts + data.beforeHighRiskAccounts) as any}
                   position="top" 
                   style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} 
                 />
@@ -408,7 +408,7 @@ function RepDistributionCharts() {
                 radius={[4, 4, 0, 0]}
               >
                 <LabelList 
-                  dataKey={(data: RepComparisonData) => data.afterNormalAccounts + data.afterHighRiskAccounts as any}
+                  dataKey={((data: RepComparisonData) => data.afterNormalAccounts + data.afterHighRiskAccounts) as any}
                   position="top" 
                   style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} 
                 />
