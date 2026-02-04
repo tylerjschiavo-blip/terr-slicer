@@ -11,6 +11,7 @@ import { allocateAccounts } from './greedyAllocator';
 import {
   calculateSegmentBasedFairness
 } from './fairness';
+import { THRESHOLD_STEP_SIZE } from './constants';
 
 /**
  * Calculate Deal Size Ratio (Enterprise Avg ARR / Mid-Market Avg ARR)
@@ -47,8 +48,8 @@ export function calculateDealSizeRatio(
 /**
  * Generate sensitivity data points across threshold range
  * 
- * Samples ~30-50 thresholds evenly across range, runs allocation with current
- * weights for each threshold, and calculates:
+ * Samples thresholds in 1K increments (matching threshold slider), runs allocation
+ * with current weights for each threshold, and calculates:
  * - Balanced fairness (segment-based: average of Enterprise and Mid Market)
  * - Custom fairness (segment-based: average of Enterprise and Mid Market)
  * - Deal Size Ratio (E Avg ARR / MM Avg ARR)
@@ -78,9 +79,9 @@ export function generateSensitivityData(
     return [];
   }
 
-  // Calculate number of samples (aim for ~30-50)
+  // Calculate number of samples using same increments as threshold slider
   const rangeSize = maxThreshold - minThreshold;
-  const stepSize = Math.max(1000, Math.floor(rangeSize / 40)); // Target ~40 samples
+  const stepSize = THRESHOLD_STEP_SIZE;
   const numSamples = Math.floor(rangeSize / stepSize) + 1;
 
   // Generate threshold samples evenly across range

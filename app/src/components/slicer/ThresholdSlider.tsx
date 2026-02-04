@@ -10,6 +10,7 @@
 import { useEffect, useState } from 'react';
 import { useAllocationStore } from '../../store/allocationStore';
 import { getThresholdRange } from '../../lib/allocation/segmentation';
+import { THRESHOLD_STEP_SIZE } from '../../lib/allocation/constants';
 import { Slider } from '../ui/slider';
 
 function ThresholdSlider() {
@@ -69,7 +70,7 @@ function ThresholdSlider() {
               id="threshold-slider"
               min={range.min}
               max={range.max}
-              step={1000}
+              step={THRESHOLD_STEP_SIZE}
               value={[threshold]}
               onValueChange={handleValueChange}
               aria-label="Employee count threshold for Enterprise/Mid Market segmentation"
