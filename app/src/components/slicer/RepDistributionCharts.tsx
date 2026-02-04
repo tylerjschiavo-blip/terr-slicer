@@ -287,12 +287,12 @@ function RepDistributionCharts() {
                     <Bar dataKey="baseARR" stackId="a" fill="#3b82f6" name="Base ARR" radius={hasRiskScore ? [0, 0, 0, 0] : [4, 4, 0, 0]} />
                     {hasRiskScore && (
                       <Bar dataKey="highRiskARR" stackId="a" fill="#ef4444" name="High-Risk ARR" radius={[4, 4, 0, 0]}>
-                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
+                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency as any} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
                       </Bar>
                     )}
                     {!hasRiskScore && (
                       <Bar dataKey="displayTotal" stackId="a" fill="transparent" radius={[0, 0, 0, 0]}>
-                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
+                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency as any} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
                       </Bar>
                     )}
                     <ReferenceLine y={enterpriseAvgARR} stroke="#16a34a" strokeWidth={2} strokeDasharray="5 5" />
@@ -375,12 +375,12 @@ function RepDistributionCharts() {
                     <Bar dataKey="baseARR" stackId="a" fill="#3b82f6" name="Base ARR" radius={hasRiskScore ? [0, 0, 0, 0] : [4, 4, 0, 0]} />
                     {hasRiskScore && (
                       <Bar dataKey="highRiskARR" stackId="a" fill="#ef4444" name="High-Risk ARR" radius={[4, 4, 0, 0]}>
-                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
+                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency as any} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
                       </Bar>
                     )}
                     {!hasRiskScore && (
                       <Bar dataKey="displayTotal" stackId="a" fill="transparent" radius={[0, 0, 0, 0]}>
-                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
+                        <LabelList dataKey="displayTotal" position="top" formatter={formatCurrency as any} style={{ fontSize: 11, fontWeight: 600, fill: '#374151' }} />
                       </Bar>
                     )}
                     <ReferenceLine y={midMarketAvgARR} stroke="#16a34a" strokeWidth={2} strokeDasharray="5 5" />
