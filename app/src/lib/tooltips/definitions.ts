@@ -10,7 +10,7 @@ export const TooltipDefinitions = {
   
   BALANCED_FAIRNESS: "Average of ARR CV%, Account CV%, and Risk CV% fairness scores using equal weights (33/33/33). Unbiased baseline for comparison.",
   
-  CUSTOM_FAIRNESS: "Weighted average of ARR CV%, Account CV%, and Risk CV% fairness scores using your current balance weights. Reflects your priorities.",
+  CUSTOM_FAIRNESS: "Custom average of ARR CV%, Account CV%, and Risk CV% fairness scores using your current balance weights. Reflects your priorities.",
   
   BLENDED_SCORE: "Normalized need score combining ARR balance, Account balance, and Risk balance with your current weights. Positive scores (0 to 1) indicate rep is under target—higher means more need. Negative scores indicate rep is over target. Preference bonuses are then applied to calculate final priority.",
   

@@ -73,7 +73,7 @@ function FairnessCard({
         <div className="grid grid-cols-2 gap-4">
           {/* Custom Composite Score */}
           <div className="flex flex-col items-center">
-            <span className="text-gray-600 text-xs mb-1" title="Weighted average using your current balance weights">
+            <span className="text-gray-600 text-xs mb-1" title="Custom average using your current balance weights">
               Custom Score
             </span>
             <span className={cn(

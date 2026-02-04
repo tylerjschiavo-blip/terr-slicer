@@ -48,15 +48,15 @@ Set the Geo Match multiplier (0.00 to 0.10). For example:
 **Recommendation:** Start with 0.03 (3%) and adjust based on results.`,
   },
 
-  // Preserve Existing Assignment
+  // Rep Preservation Bonus (Preserve Existing Assignment)
   preserve: {
     short: "Bonus applied to the account's current assigned rep. Minimizes customer disruption by favoring existing relationships when allocation is close.",
     
-    full: `**What is Preserve?**
+    full: `**What is Rep Preservation Bonus?**
 Bonus applied to the account's current assigned rep. Minimizes customer disruption by favoring existing relationships when allocation is close.
 
 **How to use:**
-Set the Preserve multiplier (0.00 to 0.10). For example:
+Set the Rep Preservation multiplier (0.00 to 0.10). For example:
 - 0.05 = 5% bonus to existing rep's blended score
 - 0.10 = 10% bonus (maximum)
 
@@ -78,7 +78,7 @@ Automatically searches for the best combination of ARR, Account, and Risk weight
 **What it shows:**
 Displays the recommended weights and the resulting Balanced Fairness Score improvement.
 
-**Note:** Optimize only adjusts weights, not preferences (Geo Match/Preserve).`,
+**Note:** Optimize only adjusts weights, not preferences (Geo Match/Rep Preservation).`,
   },
 
   // High-Risk Threshold
@@ -122,7 +122,7 @@ Step-through view showing exactly why each account was assigned to its winning r
 
 **How it works:**
 1. Shows account details and segment assignment reasoning
-2. Displays all reps' scores (Blended, Geo Bonus, Preserve Bonus, Total)
+2. Displays all reps' scores (Blended, Geo Bonus, Rep Preservation Bonus, Total)
 3. Explains why the winner was selected (tie-breaking rules if applicable)
 
 **Navigation:** Use Previous/Next to step through all accounts in order.`,

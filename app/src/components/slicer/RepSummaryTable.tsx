@@ -4,7 +4,7 @@
  * 
  * Task: AE-28 - Implement rep summary table
  * 
- * Columns: Rep, ARR, Accounts, Avg Deal, Geo Match %, Preserve %
+ * Columns: Rep, ARR, Accounts, Avg Deal, Geo Match %, Rep Preservation %
  * Sortable by all columns
  * Grouped by segment (Enterprise first, then Mid-Market)
  */
@@ -57,7 +57,7 @@ function calculateRepMetrics(
     ).length;
     const geoMatchPercent = accountCount > 0 ? (geoMatchCount / accountCount) * 100 : 0;
 
-    // Calculate Preserve %: (accounts with Original_Rep match / total accounts) * 100
+    // Calculate Rep Preservation %: (accounts with Original_Rep match / total accounts) * 100
     const preserveCount = assignedAccounts.filter(
       (acc) => acc.Original_Rep === rep.Rep_Name
     ).length;
@@ -194,7 +194,7 @@ function RepSummaryTable() {
                 <th className="text-left px-4 py-3 font-medium text-gray-700">Accounts</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-700">Avg Deal</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-700">Geo Match %</th>
-                <th className="text-left px-4 py-3 font-medium text-gray-700">Preserve %</th>
+                <th className="text-left px-4 py-3 font-medium text-gray-700">Rep Preservation %</th>
               </tr>
             </thead>
             <tbody>
@@ -298,9 +298,9 @@ function RepSummaryTable() {
                       handleSort('preserve');
                     }
                   }}
-                  aria-label="Sort by Preserve Percentage"
+                  aria-label="Sort by Rep Preservation Percentage"
                 >
-                  Preserve % {renderSortIcon('preserve')}
+                  Rep Preservation % {renderSortIcon('preserve')}
                 </th>
               </tr>
             </thead>

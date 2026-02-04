@@ -3,7 +3,7 @@
  * 
  * Three sliders for allocation preferences:
  * 1. Geo Match bonus (0.00-0.10)
- * 2. Preserve bonus (0.00-0.10)
+ * 2. Rep Preservation bonus (0.00-0.10)
  * 3. High-Risk Threshold (0-100)
  * 
  * Integrates directly with Zustand store to trigger allocation recalculation.
@@ -71,7 +71,7 @@ export const PreferenceSliders: React.FC = () => {
               htmlFor="preserve-slider"
               className="text-xs font-medium text-foreground"
             >
-              Preserve Bonus
+              Rep Preservation Bonus
             </label>
           </div>
           <span className="text-xs font-semibold text-foreground">
@@ -86,7 +86,7 @@ export const PreferenceSliders: React.FC = () => {
           value={[preserveBonus]}
           onValueChange={handlePreserveChange}
           className="w-full"
-          aria-label="Preserve Bonus"
+          aria-label="Rep Preservation Bonus"
         />
         <p className="text-[10px] text-muted-foreground">
           Range: 0.00–0.10

@@ -5,7 +5,7 @@
  * Compares baseline (Original_Rep) to current allocation using fairness scores (0-100).
  * 
  * Each card shows:
- * - Geo Match % and Preserve % in metrics section
+ * - Geo Match % and Rep Preservation % in metrics section
  * - Fairness Index with ARR, Account, and Risk fairness scores
  * - Before → After with delta for each metric
  */

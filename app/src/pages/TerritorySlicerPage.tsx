@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { UploadSection } from '@/components/upload/UploadSection';
 import { MissingRiskBanner } from '@/components/common/MissingRiskBanner';
-import HelpIcon from '@/components/common/HelpIcon';
-import GlossaryModal from '@/components/common/GlossaryModal';
+import TerritoryPageHeader from '@/components/layout/TerritoryPageHeader';
 import { useAllocationStore } from '@/store/allocationStore';
 import SlicerLayout from '@/components/slicer/SlicerLayout';
 import SlicerControls from '@/components/slicer/SlicerControls';
@@ -28,7 +26,6 @@ import type { AllocationConfig } from '@/types';
  * Individual components (sliders, charts, tables) will be implemented in tasks AE-21 through AE-30
  */
 function TerritorySlicerPage() {
-  const [showGlossary, setShowGlossary] = useState(false);
   const reps = useAllocationStore((state) => state.reps);
   const accounts = useAllocationStore((state) => state.accounts);
   const threshold = useAllocationStore((state) => state.threshold);
@@ -130,41 +127,8 @@ function TerritorySlicerPage() {
 
   // Main layout with data loaded
   return (
-    <SlicerLayout
-      sidebar={<SlicerControls />}
-    >
-      {/* Page Header with Tabs - Sticky */}
-      <div className="sticky top-0 z-20 bg-gray-50 -mx-8 px-8">
-        <div className="flex items-center gap-3 mb-6 pt-8">
-          <h1 className="text-3xl font-semibold text-gray-900">Territory Slicer</h1>
-          <HelpIcon onClick={() => setShowGlossary(true)} />
-        </div>
-        
-        {/* Tab Navigation */}
-        <div className="border-b border-gray-200">
-          <nav className="flex gap-8">
-            <Link
-              to="/slicer"
-              className="pb-3 px-1 text-sm font-medium transition-colors relative text-gray-900"
-            >
-              Analyze
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900"></div>
-            </Link>
-            <Link
-              to="/comparison"
-              className="pb-3 px-1 text-sm font-medium transition-colors relative text-gray-500 hover:text-gray-700"
-            >
-              Compare
-            </Link>
-            <Link
-              to="/audit"
-              className="pb-3 px-1 text-sm font-medium transition-colors relative text-gray-500 hover:text-gray-700"
-            >
-              Audit
-            </Link>
-          </nav>
-        </div>
-      </div>
+    <SlicerLayout sidebar={<SlicerControls />}>
+      <TerritoryPageHeader />
 
       {/* Main Content Sections */}
       
@@ -198,8 +162,6 @@ function TerritorySlicerPage() {
       <section>
         <AccountAssignmentsTable />
       </section>
-      
-      <GlossaryModal open={showGlossary} onOpenChange={setShowGlossary} />
     </SlicerLayout>
   );
 }

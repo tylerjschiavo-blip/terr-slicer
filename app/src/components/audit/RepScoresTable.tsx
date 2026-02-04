@@ -2,7 +2,7 @@
  * Rep Scores Table Component
  * Displays rep scores comparison for the current audit step
  * 
- * Shows all eligible reps' scores (Blended, Geo, Preserve, Total) for the current account allocation
+ * Shows all eligible reps' scores (Blended, Geo, Rep Preservation, Total) for the current account allocation
  * Highlights the winning rep and displays winner reasoning below the table
  */
 
@@ -239,7 +239,7 @@ function RepScoresTable({ step, allocationResults }: RepScoresTableProps) {
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
         <p className="text-xs text-gray-700">
           <span className="font-semibold">Scoring:</span> Each need score shows how far the rep is from their fair share (positive = under, negative = over). 
-          These are weighted and summed to get the Blended score. Geo and Preserve bonuses then multiply the Blended score to get the Total.
+          These are weighted and summed to get the Blended score. Geo and Rep Preservation bonuses then multiply the Blended score to get the Total.
         </p>
       </div>
 
@@ -268,7 +268,7 @@ function RepScoresTable({ step, allocationResults }: RepScoresTableProps) {
                   </div>
                 </th>
                 <th className="text-center px-4 py-3 font-medium text-gray-700">Geo</th>
-                <th className="text-center px-4 py-3 font-medium text-gray-700">Preserve</th>
+                <th className="text-center px-4 py-3 font-medium text-gray-700">Rep Preservation</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-700">Calculation</th>
                 <th className="text-center px-4 py-3 font-medium text-gray-700">Total</th>
                 <th className="text-left px-4 py-3 font-medium text-gray-700"></th>
