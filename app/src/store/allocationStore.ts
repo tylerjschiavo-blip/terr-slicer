@@ -204,12 +204,11 @@ export const useAllocationStore = create<AllocationStore>()(
     // Clear allocation results
     results: [],
     fairnessMetrics: {
-      overall: 0,
-      enterprise: 0,
-      midMarket: 0,
-      arrBalance: 0,
-      accountBalance: 0,
-      riskBalance: 0,
+      arrFairness: null,
+      accountFairness: null,
+      riskFairness: null,
+      customComposite: null,
+      balancedComposite: null,
     },
     sensitivityData: [],
     auditTrail: [],

@@ -100,7 +100,7 @@ function AccountMovementTable() {
   const filteredAccounts = useMemo(() => {
     return accountMovements.filter(account => {
       // Segment filter
-      if (filterSegment !== 'all' && account.segment !== filterSegment) {
+      if (filterSegment !== 'all' && account.toSegment !== filterSegment) {
         return false;
       }
 

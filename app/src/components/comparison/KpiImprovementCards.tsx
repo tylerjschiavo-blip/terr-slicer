@@ -227,15 +227,15 @@ export function KpiImprovementCards() {
     const mmComp = comparisons.find(c => c.segment === 'Mid Market');
 
     const arrFairnessAfter = (entComp?.arrFairnessAfter !== null && mmComp?.arrFairnessAfter !== null)
-      ? (entComp.arrFairnessAfter + mmComp.arrFairnessAfter) / 2
+      ? ((entComp?.arrFairnessAfter ?? 0) + (mmComp?.arrFairnessAfter ?? 0)) / 2
       : entComp?.arrFairnessAfter ?? mmComp?.arrFairnessAfter ?? null;
 
     const accountFairnessAfter = (entComp?.accountFairnessAfter !== null && mmComp?.accountFairnessAfter !== null)
-      ? (entComp.accountFairnessAfter + mmComp.accountFairnessAfter) / 2
+      ? ((entComp?.accountFairnessAfter ?? 0) + (mmComp?.accountFairnessAfter ?? 0)) / 2
       : entComp?.accountFairnessAfter ?? mmComp?.accountFairnessAfter ?? null;
 
     const riskFairnessAfter = (entComp?.riskFairnessAfter !== null && mmComp?.riskFairnessAfter !== null)
-      ? (entComp.riskFairnessAfter + mmComp.riskFairnessAfter) / 2
+      ? ((entComp?.riskFairnessAfter ?? 0) + (mmComp?.riskFairnessAfter ?? 0)) / 2
       : entComp?.riskFairnessAfter ?? mmComp?.riskFairnessAfter ?? null;
 
     comparisons.push({
