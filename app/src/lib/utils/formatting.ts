@@ -7,18 +7,18 @@
 /**
  * Format currency values for display
  * 
- * Examples: $62M, $1.5M, $850K, $45.2K
+ * Examples: $62.0M, $1.5M, $850.5K, $45.2K
  * 
  * @param value - Numeric value to format
- * @returns Formatted currency string
+ * @returns Formatted currency string with 1 decimal place
  */
 export function formatCurrency(value: number): string {
   if (value >= 1_000_000) {
     const millions = value / 1_000_000;
-    return `$${millions.toFixed(millions >= 10 ? 0 : 1)}M`;
+    return `$${millions.toFixed(1)}M`;
   } else if (value >= 1_000) {
     const thousands = value / 1_000;
-    return `$${thousands.toFixed(thousands >= 10 ? 0 : 1)}K`;
+    return `$${thousands.toFixed(1)}K`;
   } else {
     return `$${Math.round(value)}`;
   }
