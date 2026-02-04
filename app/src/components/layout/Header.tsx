@@ -1,9 +1,14 @@
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import HelpIcon from '@/components/common/HelpIcon';
+import GlossaryModal from '@/components/common/GlossaryModal';
 
 function Header() {
+  const [showGlossary, setShowGlossary] = useState(false);
+
   return (
     <header className="bg-white border-b border-gray-200">
-      <nav className="flex space-x-1 px-4">
+      <nav className="flex space-x-1 px-4 items-center">
         <NavLink
           to="/slicer"
           className={({ isActive }) =>
@@ -16,6 +21,7 @@ function Header() {
         >
           Territory Slicer
         </NavLink>
+        <HelpIcon onClick={() => setShowGlossary(true)} className="ml-1" />
         <NavLink
           to="/comparison"
           className={({ isActive }) =>
@@ -41,6 +47,8 @@ function Header() {
           Audit Trail
         </NavLink>
       </nav>
+      
+      <GlossaryModal open={showGlossary} onOpenChange={setShowGlossary} />
     </header>
   );
 }

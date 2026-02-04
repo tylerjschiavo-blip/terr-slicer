@@ -1,7 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UploadSection } from '@/components/upload/UploadSection';
 import { MissingRiskBanner } from '@/components/common/MissingRiskBanner';
+import HelpIcon from '@/components/common/HelpIcon';
+import GlossaryModal from '@/components/common/GlossaryModal';
 import { useAllocationStore } from '@/store/allocationStore';
 import SlicerLayout from '@/components/slicer/SlicerLayout';
 import SlicerControls from '@/components/slicer/SlicerControls';
@@ -26,6 +28,7 @@ import type { AllocationConfig } from '@/types';
  * Individual components (sliders, charts, tables) will be implemented in tasks AE-21 through AE-30
  */
 function TerritorySlicerPage() {
+  const [showGlossary, setShowGlossary] = useState(false);
   const reps = useAllocationStore((state) => state.reps);
   const accounts = useAllocationStore((state) => state.accounts);
   const threshold = useAllocationStore((state) => state.threshold);
@@ -132,7 +135,10 @@ function TerritorySlicerPage() {
     >
       {/* Page Header with Tabs - Sticky */}
       <div className="sticky top-0 z-20 bg-gray-50 -mx-8 px-8">
-        <h1 className="text-3xl font-semibold text-gray-900 mb-6 pt-8">Territory Slicer</h1>
+        <div className="flex items-center gap-3 mb-6 pt-8">
+          <h1 className="text-3xl font-semibold text-gray-900">Territory Slicer</h1>
+          <HelpIcon onClick={() => setShowGlossary(true)} />
+        </div>
         
         {/* Tab Navigation */}
         <div className="border-b border-gray-200">
@@ -192,6 +198,8 @@ function TerritorySlicerPage() {
       <section>
         <AccountAssignmentsTable />
       </section>
+      
+      <GlossaryModal open={showGlossary} onOpenChange={setShowGlossary} />
     </SlicerLayout>
   );
 }
