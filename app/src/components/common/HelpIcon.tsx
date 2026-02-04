@@ -33,7 +33,7 @@ export function HelpIcon({ onClick, className = '' }: HelpIconProps) {
     <button
       onClick={onClick}
       onKeyDown={handleKeyDown}
-      aria-label="Open help and glossary"
+      aria-label="Open How It Works"
       className={`
         inline-flex items-center justify-center
         w-8 h-8

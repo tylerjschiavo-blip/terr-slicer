@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Outline: Why Our Equitable-Distribution Logic Is Sound</title>
+  <style>
+    @media print {
+      body { margin: 1in; font-size: 11pt; }
+      h1 { page-break-after: avoid; }
+      h2 { page-break-after: avoid; }
+      ul { page-break-inside: avoid; }
+    }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      line-height: 1.5;
+      color: #222;
+    }
+    h1 { font-size: 1.5rem; border-bottom: 1px solid #ccc; padding-bottom: 0.25rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.5rem; color: #333; }
+    p { margin: 0.5rem 0; }
+    ul { margin: 0.5rem 0; padding-left: 1.5rem; }
+    li { margin: 0.25rem 0; }
+    strong { font-weight: 600; }
+    hr { border: none; border-top: 1px solid #ddd; margin: 1.5rem 0; }
+    .takeaway { margin: 0.75rem 0; padding-left: 0.75rem; border-left: 3px solid #666; font-style: italic; }
+    .subtitle { color: #555; font-size: 0.95rem; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Outline: Why Our Equitable-Distribution Logic Is Sound</h1>
+  <p class="subtitle">Short doc outline for explaining the allocation methodology’s fairness to stakeholders (revenue ops, leadership, auditors).</p>
+
+  <hr>
+
+  <h2>1. What We Mean by “Equitable”</h2>
+  <ul>
+    <li><strong>Equitable</strong> = distribution of load (ARR, account count, risk) across reps that tracks <strong>stated targets</strong> and <strong>priorities</strong>, not equal slices regardless of size or role.</li>
+    <li>We measure it with <strong>Fairness Score</strong> (100 − CV%): lower spread (CV%) ⇒ higher score ⇒ more balanced.</li>
+    <li><strong>User-controlled priorities:</strong> Balance weights (ARR % / Account % / Risk %) define what “fair” means for this org (e.g., 50% ARR, 30% accounts, 20% risk).</li>
+  </ul>
+  <p class="takeaway"><strong>Takeaway:</strong> Equity is defined explicitly and measured with a standard statistic (CV%), not hand-wavy.</p>
+
+  <hr>
+
+  <h2>2. Mechanism: Need-Based Assignment</h2>
+  <ul>
+    <li>Accounts are assigned <strong>one at a time</strong> in descending ARR order (greedy by value).</li>
+    <li>For each account, every eligible rep gets a <strong>Blended Score</strong> = how far they are from their <strong>targets</strong> (ARR, accounts, risk), combined by the user’s weights.</li>
+    <li><strong>Higher score</strong> = more under target = <strong>higher need</strong>.</li>
+    <li><strong>Winner = highest total score</strong> (after small preference adjustments).</li>
+  </ul>
+  <p>So the core rule is: <strong>assign each account to the rep who is most under target</strong>, given the chosen balance weights. That directly pushes the distribution toward the targets and reduces imbalance (lowers CV%, raises Fairness Score).</p>
+  <p class="takeaway"><strong>Takeaway:</strong> The algorithm is explicitly need-based; it doesn’t favor arbitrary reps, it favors reps who are behind.</p>
+
+  <hr>
+
+  <h2>3. Preferences Are Bounded (Tiebreaker, Not Override)</h2>
+  <ul>
+    <li><strong>Geo Match</strong> and <strong>Rep Preservation</strong> are small bonuses (0.00–0.10 each, default 0.05).</li>
+    <li>They are applied as <strong>multipliers</strong> on the Blended Score. At max (0.10 each), they can only flip the decision when reps are within ~9% of each other in need.</li>
+    <li>They are <strong>not</strong> additive blocks that let a rep far below others “steal” an account. Design keeps preference impact below the smallest balance weight so they act as tiebreakers, not overrides.</li>
+  </ul>
+  <p class="takeaway"><strong>Takeaway:</strong> Business preferences (geo, preserve) refine who wins when need is similar; they don’t override the equity logic.</p>
+
+  <hr>
+
+  <h2>4. Transparency and Control</h2>
+  <ul>
+    <li><strong>Audit trail:</strong> Every assignment shows account, eligible reps, scores (Blended, bonuses, Total), and why the winner won.</li>
+    <li><strong>User controls:</strong> Threshold (segment boundary), balance weights, and preference bonuses are all configurable and visible.</li>
+    <li><strong>Fairness metrics:</strong> Custom Fairness (your weights) and Balanced Fairness (33/33/33) are reported so you can see whether the current config is producing balanced outcomes.</li>
+  </ul>
+  <p class="takeaway"><strong>Takeaway:</strong> The logic is inspectable and adjustable; no hidden rules.</p>
+
+  <hr>
+
+  <h2>5. Why Greedy (One-at-a-Time) Is Reasonable</h2>
+  <ul>
+    <li>Processing <strong>highest-ARR accounts first</strong> avoids giving small accounts undue influence on who gets the big ones.</li>
+    <li><strong>Sequential assignment with updated state</strong> means each decision uses up-to-date “current” loads, so need is recalculated after every assignment. That’s exactly what you want for driving toward targets over time.</li>
+    <li><strong>Per-segment (E vs MM):</strong> Enterprise and Mid-Market are balanced separately, so segment mix doesn’t distort within-segment equity.</li>
+  </ul>
+  <p class="takeaway"><strong>Takeaway:</strong> The greedy, need-based, per-segment process is aligned with the goal of equitable distribution toward targets.</p>
+
+  <hr>
+
+  <h2>6. Summary One-Liner</h2>
+  <p><strong>“Equitable distribution is sound because we define it with your weights and targets, measure it with CV%/Fairness Score, assign by need (who’s most under target), keep preferences small so they don’t override balance, and make every step visible in the audit trail.”</strong></p>
+
+  <hr>
+
+  <h2>Optional: Where to Put the Full Doc</h2>
+  <ul>
+    <li><strong>Internal:</strong> Add a <code>docs/equitable-distribution-rationale.md</code> that expands each section with 1–2 short paragraphs and, if useful, one or two formula/example callouts from ALLOCATION.md.</li>
+    <li><strong>External / compliance:</strong> Same structure can be turned into a 1–2 page “Allocation methodology & fairness” appendix or FAQ.</li>
+  </ul>
+</body>
+</html>
