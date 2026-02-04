@@ -1,0 +1,1216 @@
+{
+  "schema_version": "1.0",
+  "plan": "/Users/annschiavo/tyler_projects/terr-slicer/jam/specs/draft/allocation-engine/PLAN-webapp.md",
+  "dsl_version": "plan/1.0",
+  "scheduled_at": "2026-02-03T03:09:55.357598Z",
+  "tasks": {
+    "AE-01": {
+      "exec_id": "",
+      "wave": 1,
+      "group": "foundation",
+      "role": "devops-implementer",
+      "skill": "devops",
+      "status": "completed",
+      "started_at": null,
+      "completed_at": "2026-02-01T12:00:00.000Z",
+      "declared_files": [
+        "`app/package.json` - Dependencies: vite, react, react-dom, typescript, @types/react, @types/react-dom",
+        "`app/vite.config.ts` - Vite configuration with path aliases (@/ for src/)",
+        "`app/tsconfig.json` - TypeScript configuration with strict mode, JSX support",
+        "`app/index.html` - HTML entry point with root div",
+        "`app/src/main.tsx` - React application entry point with React 18 createRoot",
+        "`app/.gitignore` - Node modules, dist, build artifacts"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-02": {
+      "exec_id": "",
+      "wave": 1,
+      "group": "foundation",
+      "role": "devops-implementer",
+      "skill": "devops",
+      "status": "completed",
+      "started_at": null,
+      "completed_at": "2026-02-01T12:00:00.000Z",
+      "declared_files": [
+        "`app/tailwind.config.js` - Tailwind configuration with shadcn/ui design tokens (colors, spacing, typography)",
+        "`app/postcss.config.js` - PostCSS configuration for Tailwind",
+        "`app/src/styles/globals.css` - Global styles with Tailwind directives and CSS variables for theming",
+        "`app/components.json` - shadcn/ui configuration file",
+        "`app/src/lib/utils.ts` - cn() utility function for className merging"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-03": {
+      "exec_id": "",
+      "wave": 1,
+      "group": "foundation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": null,
+      "completed_at": "2026-02-01T12:00:00.000Z",
+      "declared_files": [
+        "`app/src/App.tsx` - Root component with React Router setup",
+        "`app/src/pages/TerritorySlicerPage.tsx` - Territory Slicer page skeleton",
+        "`app/src/pages/TerritoryComparisonPage.tsx` - Territory Comparison page skeleton",
+        "`app/src/pages/AuditTrailPage.tsx` - Audit Trail page skeleton",
+        "`app/src/components/layout/Header.tsx` - Navigation header with page tabs",
+        "`app/src/components/layout/Sidebar.tsx` - Left sidebar for controls (shared across pages)",
+        "`app/src/components/layout/MainLayout.tsx` - Layout wrapper component"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-04": {
+      "exec_id": "",
+      "wave": 1,
+      "group": "foundation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": null,
+      "completed_at": "2026-02-01T12:00:00.000Z",
+      "declared_files": [
+        "`app/src/types/index.ts` - Core type definitions:",
+        "`Rep` interface: Rep_Name, Segment ('Enterprise' | 'Mid Market'), Location",
+        "`Account` interface: Account_ID, Account_Name, Original_Rep, ARR (number), Num_Employees (number), Location, Risk_Score (number | null)",
+        "`AllocationConfig` interface: threshold (number), arrWeight (number), accountWeight (number), riskWeight (number), geoMatchBonus (number), preserveBonus (number), highRiskThreshold (number)",
+        "`FairnessMetrics` interface: arrFairness (number | null), accountFairness (number | null), riskFairness (number | null), customComposite (number | null), balancedComposite (number | null)",
+        "`AllocationResult` interface: accountId, assignedRep, segment, blendedScore, geoBonus, preserveBonus, totalScore",
+        "`AuditStep` interface: account, segment, eligibleReps, winner, reasoning",
+        "`SensitivityDataPoint` interface: threshold, balancedFairness, customFairness, dealSizeRatio"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-05": {
+      "exec_id": "",
+      "wave": 1,
+      "group": "foundation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": null,
+      "completed_at": "2026-02-01T12:00:00.000Z",
+      "declared_files": [
+        "`app/src/store/allocationStore.ts` - Main Zustand store with slices:",
+        "`dataSlice`: reps (Rep[]), accounts (Account[]), validationErrors (string[]), validationWarnings (string[]), hasRiskScore (boolean)",
+        "`configSlice`: threshold (number), arrWeight (number), accountWeight (number), riskWeight (number), geoMatchBonus (number), preserveBonus (number), highRiskThreshold (number)",
+        "`allocationSlice`: results (AllocationResult[]), fairnessMetrics (FairnessMetrics), sensitivityData (SensitivityDataPoint[]), auditTrail (AuditStep[])",
+        "`uiSlice`: currentPage ('slicer' | 'comparison' | 'audit'), isLoading (boolean), currentAuditStep (number)"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-06": {
+      "exec_id": "",
+      "wave": 2,
+      "group": "data-layer",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T04:00:00.000Z",
+      "completed_at": "2026-02-03T04:15:00.000Z",
+      "declared_files": [
+        "`app/src/lib/schemas/repSchema.ts` - Zod schema:",
+        "Rep_Name: string, non-empty",
+        "Segment: z.enum(['Enterprise', 'Mid Market'])",
+        "Location: string, non-empty",
+        "`app/src/lib/schemas/accountSchema.ts` - Zod schema:",
+        "Account_ID: string, non-empty",
+        "Account_Name: string, non-empty",
+        "Original_Rep: string, non-empty",
+        "ARR: number, positive",
+        "Num_Employees: number, positive integer",
+        "Location: string, non-empty",
+        "Risk_Score: number, 0-100, optional"
+      ],
+      "actual_files": [
+        "app/src/lib/schemas/repSchema.ts",
+        "app/src/lib/schemas/accountSchema.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-07": {
+      "exec_id": "",
+      "wave": 2,
+      "group": "data-layer",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-02T00:00:00.000Z",
+      "completed_at": "2026-02-02T00:00:00.000Z",
+      "declared_files": [
+        "`app/src/lib/parsers/xlsxParser.ts` - XLSX parsing functions:",
+        "`parseXLSXFile(file: File): Promise\u003c{ reps: Rep[], accounts: Account[] }\u003e` - Parse XLSX file with multiple tabs, auto-detect Reps and Accounts sheets by column headers",
+        "Handle XLSX tabs (auto-detect by presence of Rep_Name vs Account_ID columns)",
+        "Handle headers case-insensitively (e.g., 'Rep_Name' = 'rep_name', 'Current_Rep' → 'Original_Rep')",
+        "Convert numeric columns (ARR, Num_Employees, Risk_Score) to numbers",
+        "Return parsing errors with row/column/sheet context",
+        "`app/src/lib/validators/dataValidator.ts` - Business rule validation:",
+        "`validateRepsData(reps: Rep[]): ValidationResult` - Check for duplicate Rep_Names, invalid Segments",
+        "`validateAccountsData(accounts: Account[]): ValidationResult` - Check for duplicate Account_IDs, invalid ARR/Num_Employees",
+        "`validateDataConsistency(reps: Rep[], accounts: Account[]): ValidationResult` - Check for orphan reps (reps not referenced in accounts)"
+      ],
+      "actual_files": [
+        "app/src/lib/parsers/xlsxParser.ts",
+        "app/src/lib/validators/dataValidator.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-08": {
+      "exec_id": "",
+      "wave": 2,
+      "group": "data-layer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T04:00:00.000Z",
+      "completed_at": "2026-02-03T04:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/upload/FileUploadZone.tsx` - Upload component:",
+        "Drag-and-drop zone for XLSX files",
+        "Click to browse file input",
+        "Single upload zone: \"Upload Data File (XLSX with Reps and Accounts tabs)\"",
+        "File type validation (XLSX only)",
+        "Visual feedback (drag over state, file selected state)",
+        "Display uploaded file name",
+        "Auto-detection message explaining tab detection by column headers (Reps by Rep_Name, Accounts by Account_ID)",
+        "`app/src/components/upload/UploadSection.tsx` - Container component for upload zone"
+      ],
+      "actual_files": [
+        "app/src/components/upload/FileUploadZone.tsx",
+        "app/src/components/upload/UploadSection.tsx",
+        "app/src/pages/TerritorySlicerPage.tsx (updated)"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-09": {
+      "exec_id": "",
+      "wave": 2,
+      "group": "data-layer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": null,
+      "completed_at": "2026-02-03T03:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/upload/ValidationFeedback.tsx` - Feedback component:",
+        "Display hard errors (blocking) in red alert box",
+        "Display soft warnings (non-blocking) in yellow info box",
+        "List errors with row/column/sheet context (e.g., \"Accounts tab, Row 5, Account_ID: Duplicate value 'ACC-123'\")",
+        "Group errors by type (missing columns, invalid data, duplicates, sheet detection)",
+        "Show validation note: \"Geo match uses exact string match (case-insensitive). Ensure location formats align between Reps and Accounts tabs.\"",
+        "Show info about column mapping: \"Note: 'Current_Rep' column is automatically mapped to 'Original_Rep' during XLSX import\"",
+        "`app/src/components/common/Alert.tsx` - Reusable alert component (shadcn/ui based)"
+      ],
+      "actual_files": [
+        "app/src/components/common/Alert.tsx",
+        "app/src/components/upload/ValidationFeedback.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-10": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T06:00:00.000Z",
+      "completed_at": "2026-02-03T06:15:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/segmentation.ts` - Segmentation functions:",
+        "`segmentAccount(account: Account, threshold: number): 'Enterprise' | 'Mid Market'` - Return segment based on Num_Employees vs threshold",
+        "`segmentAccounts(accounts: Account[], threshold: number): { enterprise: Account[], midMarket: Account[] }` - Segment all accounts",
+        "`getThresholdRange(accounts: Account[]): { min: number, max: number }` - Calculate min/max employees, round to nearest 1K",
+        "`roundToNearestThousand(value: number): number` - Helper to round threshold range"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/segmentation.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-11": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T07:00:00.000Z",
+      "completed_at": "2026-02-03T07:30:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/greedyAllocator.ts` - Allocation functions:",
+        "`calculateBlendedScore(rep: Rep, segmentAccounts: Account[], assignedAccounts: Account[], config: AllocationConfig): number` - Calculate normalized need across ARR, Account count, Risk, weighted by user sliders",
+        "`allocateAccounts(accounts: Account[], reps: Rep[], config: AllocationConfig): AllocationResult[]` - Main allocation function:",
+        "Segment accounts by threshold",
+        "Filter reps by segment (Enterprise reps get Enterprise accounts, Mid Market reps get Mid Market accounts)",
+        "Process accounts in descending ARR order (then by Account_ID)",
+        "For each account, calculate blended score for each eligible rep, apply preference bonuses, get total score",
+        "Assign to rep with highest total score (most under target after bonuses)",
+        "Track assigned accounts for next iteration",
+        "Return allocation results with scores",
+        "`calculateTargetARR(reps: Rep[], accounts: Account[]): number` - Calculate target ARR per rep for segment",
+        "`calculateTargetAccounts(reps: Rep[], accounts: Account[]): number` - Calculate target account count per rep"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/greedyAllocator.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-12": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T08:00:00.000Z",
+      "completed_at": "2026-02-03T08:30:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/__tests__/greedyAllocator.test.ts` - Unit test suite for allocation algorithm",
+        "Test cases covering:",
+        "Simple case: 2 reps, 4 accounts, equal weights",
+        "Edge case: 1 rep per segment, empty segment handling",
+        "Complex case: 10 reps, 100 accounts, various weight combinations",
+        "Segment assignment validation (Enterprise accounts → Enterprise reps, Mid Market accounts → Mid Market reps)",
+        "Blended score calculation validation (positive = under target, negative = over target)",
+        "Preference bonus formula validation (sign-aware multiplier)",
+        "Winner selection validation (highest total score wins)",
+        "Tie-breaking validation (lowest ARR, then alphabetical)"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/__tests__/greedyAllocator.test.ts",
+        "app/vite.config.ts (updated with test configuration)",
+        "app/package.json (updated with test scripts)"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-13": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T08:00:00.000Z",
+      "completed_at": "2026-02-03T08:30:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/preferences.ts` - Preference functions:",
+        "`calculateGeoBonus(account: Account, rep: Rep, geoMatchBonus: number): number` - Return geoMatchBonus (0.00-0.10) if account Location matches rep Location (exact string, case-insensitive), else 0",
+        "`calculatePreserveBonus(account: Account, rep: Rep, preserveBonus: number): number` - Return preserveBonus (0.00-0.10) if account Original_Rep matches rep Rep_Name, else 0",
+        "`applyPreferenceBonuses(blendedScore: number, geoBonus: number, preserveBonus: number): number` - Apply bonuses using sign-aware multiplier:",
+        "For positive blended scores (under target): `blendedScore * (1 + geoBonus + preserveBonus)` - bonuses increase priority",
+        "For negative blended scores (over target): `blendedScore * (1 - geoBonus - preserveBonus)` - bonuses reduce penalty",
+        "`geoMatch(accountLocation: string, repLocation: string): boolean` - Exact string match, case-insensitive (\"CA\" = \"ca\" but \"California\" ≠ \"CA\")"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/preferences.ts",
+        "app/src/lib/allocation/greedyAllocator.ts (updated)"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-14": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T09:00:00.000Z",
+      "completed_at": "2026-02-03T09:30:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/fairness.ts` - Fairness calculation functions:",
+        "`calculateCV(values: number[]): number | null` - Calculate coefficient of variation (std dev / mean), return null if mean is 0 or empty array",
+        "`calculateARRFairness(reps: Rep[], allocationResults: AllocationResult[], accounts: Account[]): number | null` - Calculate ARR CV% across reps, convert to 0-100 score (100 - CV%), return null if undefined",
+        "`calculateAccountFairness(reps: Rep[], allocationResults: AllocationResult[]): number | null` - Calculate account count CV% across reps, convert to 0-100 score",
+        "`calculateRiskFairness(reps: Rep[], allocationResults: AllocationResult[], accounts: Account[], highRiskThreshold: number): number | null` - Calculate high-risk ARR % CV% across reps, convert to 0-100 score, return null if Risk_Score missing",
+        "`calculateCustomComposite(arrFairness: number | null, accountFairness: number | null, riskFairness: number | null, weights: { arr: number, account: number, risk: number }): number | null` - Weighted average using user weights",
+        "`calculateBalancedComposite(arrFairness: number | null, accountFairness: number | null, riskFairness: number | null): number | null` - Equal-weight average (33/33/33)",
+        "`getFairnessColor(score: number | null): string` - Return color class: 94-100 Dark Green, 88-93 Light Green, 82-87 Yellow, 75-81 Orange, \u003c75 Red, null = gray"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/fairness.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-15": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T09:30:00.000Z",
+      "completed_at": "2026-02-03T10:00:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/__tests__/fairness.test.ts` - Fairness calculation test suite",
+        "Test cases covering:",
+        "Known CV% values with hand-calculated expected results",
+        "Equal distribution (CV% = 0, fairness = 100)",
+        "Highly unequal distribution (high CV%, low fairness)",
+        "Empty segment (fairness = null, not 0 or 100)",
+        "Custom composite with various weight combinations",
+        "Balanced composite (33/33/33 equal weights)",
+        "Color band mapping validation (94-100 Dark Green, etc.)",
+        "Manual verification: calculate CV% by hand for test cases, compare to code output"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/__tests__/fairness.test.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-16": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T23:36:00.000Z",
+      "completed_at": "2026-02-03T23:37:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/optimizer.ts` - Optimization functions:",
+        "`optimizeWeights(accounts: Account[], reps: Rep[], threshold: number, geoMatchBonus: number, preserveBonus: number, highRiskThreshold: number): { arrWeight: number, accountWeight: number, riskWeight: number, balancedScore: number }` - Search all weight combinations:",
+        "Iterate ARR weight 0-100% in 1% steps",
+        "For each ARR weight, iterate Account weight 0 to (100 - ARR weight)%",
+        "Risk weight = 100 - ARR weight - Account weight",
+        "Run allocation with each weight combination",
+        "Score result using Balanced composite (33/33/33)",
+        "Return weights with highest Balanced score",
+        "Handle missing Risk_Score: lock Risk weight to 0%, only search ARR/Account weights",
+        "Return recommended weights and resulting Balanced score"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/optimizer.ts",
+        "app/src/lib/allocation/__tests__/optimizer.test.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-17": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T12:00:00.000Z",
+      "completed_at": "2026-02-03T12:30:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/sensitivity.ts` - Sensitivity analysis functions:",
+        "`generateSensitivityData(accounts: Account[], reps: Rep[], config: AllocationConfig): SensitivityDataPoint[]` - Generate data points:",
+        "Calculate threshold range (min/max employees, rounded to nearest 1K)",
+        "Sample ~30-50 thresholds evenly across range",
+        "For each threshold:",
+        "Run allocation with current weights (from config)",
+        "Calculate Balanced fairness (33/33/33 scoring)",
+        "Calculate Custom fairness (user's weight scoring)",
+        "Calculate Deal Size Ratio (E Avg ARR / MM Avg ARR)",
+        "Return array of data points",
+        "`calculateDealSizeRatio(enterpriseAccounts: Account[], midMarketAccounts: Account[]): number | null` - Calculate E Avg ARR / MM Avg ARR, return null if empty segment"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/sensitivity.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-18": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T10:00:00.000Z",
+      "completed_at": "2026-02-03T10:30:00.000Z",
+      "declared_files": [
+        "`app/src/lib/allocation/auditTrail.ts` - Audit trail functions:",
+        "`generateAuditTrail(accounts: Account[], reps: Rep[], config: AllocationConfig, allocationResults: AllocationResult[]): AuditStep[]` - Generate audit trail:",
+        "Process accounts in same order as allocation (descending ARR, then Account_ID)",
+        "For each account:",
+        "Determine segment (E or MM) and reason (\"Enterprise (threshold 2,750: 53K ≥ 2,750)\")",
+        "Find eligible reps (same segment as account)",
+        "Calculate scores for each eligible rep: blended score, geo bonus, preserve bonus, total score",
+        "Identify winner (highest total score = most under target)",
+        "Generate reasoning: \"Mickey wins because: highest total score (most under target) + geo match bonus\"",
+        "Return array of audit steps",
+        "`formatSegmentReason(account: Account, threshold: number): string` - Format segment assignment reason",
+        "`formatWinnerReason(winner: Rep, scores: { blended: number, geo: number, preserve: number, total: number }, eligibleReps: Rep[]): string` - Format winner explanation"
+      ],
+      "actual_files": [
+        "app/src/lib/allocation/auditTrail.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-19": {
+      "exec_id": "",
+      "wave": 3,
+      "group": "core-allocation",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "completed",
+      "started_at": "2026-02-03T23:40:00.000Z",
+      "completed_at": "2026-02-03T23:41:00.000Z",
+      "declared_files": [
+        "`app/src/lib/__tests__/edgeCases.test.ts` - Edge case test suite",
+        "Test scenarios covering:",
+        "Empty segments (all accounts in one segment)",
+        "Single rep per segment",
+        "All accounts same employee count",
+        "All accounts same ARR",
+        "Missing Risk_Score column (Risk dimension disabled)",
+        "Invalid CSV format (malformed data)",
+        "Duplicate Account_IDs (hard error)",
+        "Orphan reps (reps not referenced in accounts)",
+        "Verify: no errors thrown, appropriate warnings/errors displayed, tool remains functional"
+      ],
+      "actual_files": [
+        "app/src/lib/__tests__/edgeCases.test.ts"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-20": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T12:00:00.000Z",
+      "completed_at": "2026-02-03T12:45:00.000Z",
+      "declared_files": [
+        "`app/src/pages/TerritorySlicerPage.tsx` - Complete page layout:",
+        "Left sidebar with controls (threshold, weights, preferences, optimize button)",
+        "Main content area with sections:",
+        "Segment Metrics (3 cards: Enterprise, Mid-Market, Total)",
+        "Fairness Index (3 cards: Enterprise, Mid-Market, Average)",
+        "Rep Distribution (ARR and Account charts for E and MM)",
+        "Threshold Sensitivity chart",
+        "Rep Summary table",
+        "Account Assignments table (collapsible)",
+        "Empty state: show \"Upload data to begin\" when no data loaded",
+        "`app/src/components/slicer/SlicerLayout.tsx` - Layout wrapper component"
+      ],
+      "actual_files": [
+        "app/src/pages/TerritorySlicerPage.tsx",
+        "app/src/components/slicer/SlicerLayout.tsx",
+        "app/src/components/slicer/SlicerControls.tsx",
+        "app/src/components/slicer/SegmentSummaryCards.tsx",
+        "app/src/components/slicer/FairnessScoreDisplay.tsx",
+        "app/src/components/slicer/RepDistributionCharts.tsx",
+        "app/src/components/slicer/ThresholdSensitivityChart.tsx",
+        "app/src/components/slicer/RepSummaryTable.tsx",
+        "app/src/components/slicer/AccountAssignmentsTable.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-21": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T00:00:00.000Z",
+      "completed_at": "2026-02-03T00:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/ThresholdSlider.tsx` - Slider component:",
+        "Range slider (shadcn/ui Slider component)",
+        "Dynamic min/max from data (rounded to nearest 1K)",
+        "1,000-employee increments",
+        "Display current threshold value",
+        "Update store on change (triggers recalculation)",
+        "Show min/max labels below slider"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/ThresholdSlider.tsx",
+        "app/src/components/ui/slider.tsx",
+        "app/src/components/slicer/__tests__/ThresholdSlider.test.tsx",
+        "app/package.json (updated with lucide-react, @testing-library/react, jsdom)"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-22": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T10:00:00.000Z",
+      "completed_at": "2026-02-03T10:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/BalanceWeightSliders.tsx` - Weight sliders component:",
+        "Three sliders: ARR Weight, Account Weight, Risk Weight",
+        "Range 0-100%, 1% increments",
+        "Auto-adjustment: when one slider changes, proportionally adjust other two to maintain sum=100%",
+        "Rounding: calculate proportional values, round to nearest integer, reconcile ±1 difference by adjusting larger slider",
+        "Display percentage values",
+        "Update store on change (triggers allocation recalculation)",
+        "Disable Risk slider if Risk_Score missing (greyed, locked to 0%)"
+      ],
+      "actual_files": [
+        "app/src/components/ui/slider.tsx",
+        "app/src/components/slicer/BalanceWeightSliders.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-23": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T08:00:00.000Z",
+      "completed_at": "2026-02-03T08:15:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/PreferenceSliders.tsx` - Preference sliders component:",
+        "Geo Match slider: 0.00-0.10 range, 0.01 step, default 0.05",
+        "Preserve slider: 0.00-0.10 range, 0.01 step, default 0.05",
+        "Display values with 2 decimal places (e.g., \"0.05\")",
+        "Update store on change (triggers allocation recalculation)",
+        "High-Risk Threshold slider: 0-100 range, step 5, default 70"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/PreferenceSliders.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-24": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T15:00:00.000Z",
+      "completed_at": "2026-02-03T15:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/SegmentSummaryCards.tsx` - Summary cards component:",
+        "Three equal-width cards: Enterprise, Mid-Market, Total",
+        "Each card displays:",
+        "ARR (total for segment)",
+        "Accounts (count)",
+        "ARR/Rep (ARR ÷ number of reps in segment)",
+        "Accts/Rep (Accounts ÷ number of reps in segment)",
+        "Avg Deal (ARR ÷ Accounts)",
+        "Format numbers: ARR as currency ($62M), counts as integers, ratios with 1 decimal",
+        "Handle empty segments: show N/A for undefined metrics"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/SegmentSummaryCards.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-25": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-04T00:00:00.000Z",
+      "completed_at": "2026-02-04T00:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/FairnessScoreDisplay.tsx` - Fairness display component:",
+        "Three cards: Enterprise, Mid-Market, Average",
+        "Each card displays:",
+        "Custom composite score (with color badge)",
+        "Balanced composite score (with color badge)",
+        "ARR Balance score (with color bar)",
+        "Account Balance score (with color bar)",
+        "Risk Distribution score (with color bar, N/A if Risk_Score missing)",
+        "Color bands: 94-100 Dark Green, 88-93 Light Green, 82-87 Yellow, 75-81 Orange, \u003c75 Red",
+        "Tooltip on hover: explain CV% method and what scores mean",
+        "Show N/A for null scores (empty segments, missing Risk_Score)"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/FairnessScoreDisplay.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-26": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T12:00:00.000Z",
+      "completed_at": "2026-02-03T12:45:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/RepDistributionCharts.tsx` - Distribution charts component:",
+        "Two chart sets: Enterprise reps, Mid-Market reps",
+        "Each set has two charts: ARR by Rep, Accounts by Rep",
+        "Stacked bars: Base ARR + High-Risk ARR (if Risk_Score available)",
+        "Show rep names on Y-axis, values on X-axis",
+        "Average trend line across bars",
+        "Color coding: Base ARR (primary color), High-Risk ARR (secondary color)",
+        "Use Recharts BarChart component"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/RepDistributionCharts.tsx",
+        "app/package.json (added recharts dependency)"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-27": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T13:00:00.000Z",
+      "completed_at": "2026-02-03T13:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/SensitivityChart.tsx` - Sensitivity chart component:",
+        "Recharts LineChart with dual Y-axis:",
+        "Left Y-axis: Fairness (0-100)",
+        "Right Y-axis: Deal Size Ratio (E:MM)",
+        "Two lines: \"Balanced Fairness\" (33/33/33 scoring), \"Custom Fairness\" (user's weight scoring)",
+        "X-axis: Threshold (employee count)",
+        "Hover tooltip: show threshold, both fairness scores, Deal Size Ratio, weight splits",
+        "Current threshold indicator (vertical line)",
+        "Chart computed once on data load (not per-threshold optimization)"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/ThresholdSensitivityChart.tsx (implemented as ThresholdSensitivityChart per AE-20 naming)",
+        "app/package.json (recharts already installed)"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-28": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T20:00:00.000Z",
+      "completed_at": "2026-02-03T20:30:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/RepSummaryTable.tsx` - Summary table component:",
+        "Columns: Rep, ARR, Accounts, Avg Deal, Geo Match %, Preserve %",
+        "Sortable columns (click header to sort)",
+        "Format: ARR as currency, counts as integers, percentages with 1 decimal",
+        "Calculate Geo Match %: (accounts with geo match / total accounts) * 100",
+        "Calculate Preserve %: (accounts with Original_Rep match / total accounts) * 100",
+        "Group by segment (Enterprise reps first, then Mid-Market reps)"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/RepSummaryTable.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-29": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-03T20:30:00.000Z",
+      "completed_at": "2026-02-04T01:00:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/AccountAssignmentsTable.tsx` - Assignments table component:",
+        "Columns: Account ID, Account Name, Segment, Assigned Rep, ARR, Employees, Risk Score (if available)",
+        "Sortable columns",
+        "Filterable by segment, rep, risk level",
+        "Collapsible section (default collapsed, expand to view)",
+        "Format: ARR as currency, Employees as integer with K suffix (e.g., \"53K\"), Risk Score as integer",
+        "Pagination for large datasets (optional, if \u003e100 rows)"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/AccountAssignmentsTable.tsx"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-30": {
+      "exec_id": "",
+      "wave": 4,
+      "group": "ui-slicer",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "completed",
+      "started_at": "2026-02-04T05:30:00.000Z",
+      "completed_at": "2026-02-04T06:00:00.000Z",
+      "declared_files": [
+        "`app/src/components/slicer/OptimizeWeightsButton.tsx` - Optimize button component:",
+        "Button: \"Optimize Weights\"",
+        "On click: run optimizer, show loading state, display results modal",
+        "Modal displays:",
+        "Current weights and Balanced score",
+        "Recommended weights and resulting Balanced score",
+        "Improvement delta (+X points)",
+        "\"Apply\" button to update sliders",
+        "\"Cancel\" button to dismiss",
+        "Tooltip: explain what optimization does (\"Searches all weight combinations to find highest Balanced fairness at current threshold\")",
+        "`app/src/components/slicer/OptimizeWeightsModal.tsx` - Results modal component"
+      ],
+      "actual_files": [
+        "app/src/components/slicer/OptimizeWeightsButton.tsx",
+        "app/src/components/slicer/OptimizeWeightsModal.tsx",
+        "app/src/components/ui/dialog.tsx",
+        "app/src/components/ui/button.tsx",
+        "app/src/components/ui/index.ts (updated)",
+        "app/src/components/slicer/SlicerControls.tsx (updated)",
+        "app/package.json (added @radix-ui/react-dialog)"
+      ],
+      "undeclared_warnings": []
+    },
+    "AE-31": {
+      "exec_id": "",
+      "wave": 5,
+      "group": "ui-comparison",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/pages/TerritoryComparisonPage.tsx` - Comparison page layout:",
+        "Left sidebar (shared controls)",
+        "Main content sections:",
+        "ARR by Rep (Before vs After) chart",
+        "Accounts by Rep (Before vs After) chart",
+        "KPI Improvement cards",
+        "Account Movement table (collapsible)",
+        "Empty state: show \"Upload data and configure allocation to view comparison\"",
+        "`app/src/components/comparison/ComparisonLayout.tsx` - Layout wrapper component"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-32": {
+      "exec_id": "",
+      "wave": 5,
+      "group": "ui-comparison",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/comparison/ArrComparisonChart.tsx` - ARR comparison chart:",
+        "Recharts BarChart with clustered columns",
+        "X-axis: Rep names (all reps)",
+        "Two bars per rep: Before (Original_Rep assignments), After (Assigned_Rep assignments)",
+        "Y-axis: ARR (currency format)",
+        "Legend: \"Before (Original)\" and \"After (New Allocation)\"",
+        "Color coding: Before (light color), After (dark color)",
+        "Hover tooltip: show rep name, before ARR, after ARR, delta"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-33": {
+      "exec_id": "",
+      "wave": 5,
+      "group": "ui-comparison",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/comparison/AccountDistributionChart.tsx` - Account comparison chart:",
+        "Recharts BarChart with clustered columns",
+        "X-axis: Rep names (all reps)",
+        "Two bars per rep: Before (Original_Rep assignments), After (Assigned_Rep assignments)",
+        "Y-axis: Account count (integer)",
+        "Legend: \"Before (Original)\" and \"After (New Allocation)\"",
+        "Color coding: Before (light color), After (dark color)",
+        "Hover tooltip: show rep name, before count, after count, delta"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-34": {
+      "exec_id": "",
+      "wave": 5,
+      "group": "ui-comparison",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/comparison/KpiImprovementCards.tsx` - KPI cards component:",
+        "Cards display:",
+        "ARR CV%: Before → After, Δ (delta), visual bar showing improvement",
+        "Account CV%: Before → After, Δ, visual bar",
+        "Risk CV%: Before → After, Δ, visual bar (N/A if Risk_Score missing)",
+        "Geo Match %: Before → After, Δ, visual bar",
+        "Format: CV% as percentage (e.g., \"32% → 8%\"), delta as signed number (e.g., \"-24%\")",
+        "Visual bars: green for improvement (negative delta), red for degradation (positive delta)",
+        "Calculate baseline: run allocation with equal weights (33/33/33) on Original_Rep assignments"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-35": {
+      "exec_id": "",
+      "wave": 5,
+      "group": "ui-comparison",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/comparison/AccountMovementTable.tsx` - Movement table component:",
+        "Columns: Account Name, From Rep (Original_Rep), To Rep (Assigned_Rep), Segment, ARR",
+        "Filterable by: Segment, From Rep, To Rep",
+        "Sortable columns",
+        "Show only accounts where Original_Rep ≠ Assigned_Rep",
+        "Collapsible section (default collapsed)",
+        "Format: ARR as currency",
+        "Pagination for large datasets (optional, if \u003e100 rows)"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-36": {
+      "exec_id": "",
+      "wave": 6,
+      "group": "ui-audit",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/pages/AuditTrailPage.tsx` - Audit trail page layout:",
+        "Left sidebar (shared controls)",
+        "Main content sections:",
+        "Step counter: \"Step X of Y\"",
+        "Account info card (name, ARR, employees)",
+        "Segment reasoning display",
+        "Rep score comparison table",
+        "Winner explanation card",
+        "Navigation controls (Previous, Next, centered)",
+        "Empty state: show \"Upload data and configure allocation to view audit trail\"",
+        "`app/src/components/audit/AuditLayout.tsx` - Layout wrapper component"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-37": {
+      "exec_id": "",
+      "wave": 6,
+      "group": "ui-audit",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/audit/AccountStepper.tsx` - Stepper component:",
+        "Previous button (disabled on first step)",
+        "Next button (disabled on last step)",
+        "Step counter: \"Step X of Y\"",
+        "Optional: jump to step input (number input or slider)",
+        "Update currentAuditStep in store on navigation",
+        "Display current account info (name, ARR, employees)"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-38": {
+      "exec_id": "",
+      "wave": 6,
+      "group": "ui-audit",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/audit/DecisionExplanationCard.tsx` - Explanation card component:",
+        "Display account info: Name, ARR, Employees",
+        "Display segment assignment: \"Enterprise (threshold 2,750: 53K ≥ 2,750)\" or \"Mid-Market (threshold 2,750: 450 \u003c 2,750)\"",
+        "Display winner: Rep name",
+        "Display reasoning: \"Mickey wins because: highest total score (most under target) + geo match bonus\"",
+        "Format: Clear, readable explanation with bullet points or structured text"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-39": {
+      "exec_id": "",
+      "wave": 6,
+      "group": "ui-audit",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/audit/RepScoreComparison.tsx` - Score comparison table:",
+        "Columns: Rep, Blended (need), Geo, Preserve, Total",
+        "Highlight winner row (highest Total score)",
+        "Format scores: 2 decimal places",
+        "Show bonuses: \"+0.05\" if applied, \"0\" if not",
+        "Tooltip on Blended column: explain blended score (positive = under target, higher = more need)",
+        "Sortable by Total score (descending, winner first)"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-40": {
+      "exec_id": "",
+      "wave": 6,
+      "group": "ui-audit",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/audit/SegmentReasoningDisplay.tsx` - Segment reasoning component:",
+        "Display: \"Enterprise (threshold 2,750: 53K ≥ 2,750)\" or \"Mid-Market (threshold 2,750: 450 \u003c 2,750)\"",
+        "Format: Clear, one-line explanation",
+        "Show threshold value and account employee count",
+        "Use comparison operator (≥ or \u003c)"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-41": {
+      "exec_id": "",
+      "wave": 7,
+      "group": "polish",
+      "role": "ui-designer",
+      "skill": "ui-design",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/common/Tooltip.tsx` - Reusable tooltip component (shadcn/ui based):",
+        "Hover trigger with info icon or question mark",
+        "Tooltip content from definitions file",
+        "Accessible (keyboard focus, screen reader support)",
+        "`app/src/lib/tooltips/definitions.ts` - Tooltip content definitions:",
+        "`FAIRNESS_SCORE`: \"Fairness score (0-100) calculated as 100 - CV%. Higher scores indicate more balanced distribution. CV% measures coefficient of variation across reps.\"",
+        "`BALANCED_FAIRNESS`: \"Average of ARR CV%, Account CV%, and Risk CV% fairness scores using equal weights (33/33/33). Unbiased baseline for comparison.\"",
+        "`CUSTOM_FAIRNESS`: \"Weighted average of ARR CV%, Account CV%, and Risk CV% fairness scores using your current balance weights. Reflects your priorities.\"",
+        "`BLENDED_SCORE`: \"Normalized need score combining ARR balance, Account balance, and Risk balance with your current weights. Positive scores (0 to 1) indicate rep is under target—higher means more need. Negative scores indicate rep is over target. Preference bonuses are then applied to calculate final priority.\"",
+        "`GEO_MATCH`: \"Bonus (0.00-0.10) applied when account and rep location strings match exactly (case-insensitive). Example: 'CA' = 'ca' but 'California' ≠ 'CA'.\"",
+        "`OPTIMIZE_WEIGHTS`: \"Searches all weight combinations (1% increments) to find the weight split (ARR/Account/Risk) that produces the highest Balanced fairness score at your current threshold. Optimization target: Balanced fairness (33/33/33 composite), not Custom fairness.\"",
+        "`PRESERVE_BONUS`: \"Bonus (0.00-0.10) applied when account's Original_Rep matches this rep. Helps maintain existing rep relationships while balancing workload.\"",
+        "`DEAL_SIZE_RATIO`: \"Ratio of Enterprise average ARR to Mid-Market average ARR. Higher ratio indicates larger Enterprise deals relative to Mid-Market deals.\""
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-42": {
+      "exec_id": "",
+      "wave": 7,
+      "group": "polish",
+      "role": "web-implementer",
+      "skill": "web-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/lib/export/csvExporter.ts` - CSV export functions:",
+        "`exportAllocationResults(accounts: Account[], allocationResults: AllocationResult[]): string` - Generate CSV:",
+        "Include all original columns from uploaded Accounts data",
+        "Keep \"Original_Rep\" column as-is (already mapped from \"Current_Rep\" during import)",
+        "Add \"Segment\" column (Enterprise or Mid Market)",
+        "Add \"Assigned_Rep\" column",
+        "Format: CSV with headers, comma-separated values",
+        "Handle special characters (quotes, commas)",
+        "`app/src/components/common/ExportButton.tsx` - Export button component:",
+        "Button: \"Export CSV\"",
+        "On click: generate CSV, trigger browser download",
+        "Filename: \"territory-allocation-YYYY-MM-DD.csv\"",
+        "Disabled when no allocation results"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-43": {
+      "exec_id": "",
+      "wave": 7,
+      "group": "polish",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/common/EmptySegmentWarning.tsx` - Warning banner component:",
+        "Display when segment has zero accounts",
+        "Message: \"No [Enterprise/Mid-Market] accounts at this threshold.\"",
+        "Show N/A for undefined metrics (CV%, per-rep calculations)",
+        "Display in segment summary cards and fairness cards",
+        "`app/src/lib/allocation/fairness.ts` - Update fairness functions to return null for empty segments",
+        "`app/src/components/slicer/SegmentSummaryCards.tsx` - Display N/A for empty segment metrics"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-44": {
+      "exec_id": "",
+      "wave": 7,
+      "group": "polish",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/common/MissingRiskBanner.tsx` - Info banner component:",
+        "Display when Risk_Score column not found in uploaded data",
+        "Message: \"Risk_Score column not found. Risk dimension disabled. Tool remains functional for ARR and Account balancing.\"",
+        "Display on upload page and slicer page",
+        "`app/src/components/slicer/BalanceWeightSliders.tsx` - Disable and lock Risk slider to 0% when Risk_Score missing",
+        "`app/src/components/slicer/FairnessScoreDisplay.tsx` - Show N/A for Risk Distribution score when Risk_Score missing",
+        "`app/src/lib/allocation/fairness.ts` - Return null for Risk fairness when Risk_Score missing"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-45": {
+      "exec_id": "",
+      "wave": 7,
+      "group": "polish",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/common/AlertBanner.tsx` - Reusable banner component:",
+        "Variants: warning (yellow), info (blue), error (red)",
+        "Dismissible (optional)",
+        "Accessible (ARIA labels, keyboard navigation)",
+        "`app/src/components/common/EmptySegmentWarning.tsx` - Uses AlertBanner (warning variant)",
+        "`app/src/components/common/MissingRiskBanner.tsx` - Uses AlertBanner (info variant)",
+        "`app/src/components/upload/ValidationFeedback.tsx` - Uses AlertBanner (error variant for hard errors, warning variant for soft warnings)"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-46": {
+      "exec_id": "",
+      "wave": 7,
+      "group": "polish",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/styles/responsive.css` - Responsive styles:",
+        "Breakpoints: tablet (768px), desktop (1024px)",
+        "Sidebar: full-width on mobile, fixed width on desktop",
+        "Cards: stack vertically on mobile, side-by-side on desktop",
+        "Tables: horizontal scroll on mobile, full-width on desktop",
+        "Charts: responsive sizing",
+        "`app/src/components/layout/MainLayout.tsx` - Apply responsive classes",
+        "`app/src/components/slicer/SegmentSummaryCards.tsx` - Stack cards on mobile",
+        "`app/src/components/slicer/FairnessScoreDisplay.tsx` - Stack cards on mobile"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-47": {
+      "exec_id": "",
+      "wave": 7,
+      "group": "polish",
+      "role": "ui-implementer",
+      "skill": "ui-development",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/components/common/LoadingSpinner.tsx` - Loading spinner component (shadcn/ui based)",
+        "`app/src/components/common/LoadingOverlay.tsx` - Full-page loading overlay",
+        "`app/src/store/allocationStore.ts` - Add isLoading state to uiSlice",
+        "`app/src/pages/TerritorySlicerPage.tsx` - Show loading spinner during allocation computation",
+        "`app/src/components/slicer/OptimizeWeightsButton.tsx` - Show loading state during optimization",
+        "Optimistic updates: update UI immediately, then recalculate in background"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-48": {
+      "exec_id": "",
+      "wave": 8,
+      "group": "quality",
+      "role": "ui-test-implementer",
+      "skill": "ui-testing",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "Browser compatibility test report:",
+        "Chrome (latest)",
+        "Firefox (latest)",
+        "Safari (latest)",
+        "Edge (latest)",
+        "Test cases: upload CSV, adjust sliders, view charts, export CSV, navigate pages",
+        "Document any browser-specific issues or workarounds"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-49": {
+      "exec_id": "",
+      "wave": 8,
+      "group": "quality",
+      "role": "ui-test-implementer",
+      "skill": "ui-testing",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "`app/src/__tests__/integration/` - Integration test suite directory",
+        "Test workflows covering:",
+        "Full allocation workflow: upload CSVs → configure threshold/weights → view results → export",
+        "Multi-page navigation: Slicer → Comparison → Audit Trail, verify state persists",
+        "State persistence: verify allocation results persist across page navigation",
+        "Export accuracy: verify exported CSV matches allocation results (all columns, correct values)",
+        "User interactions: slider changes, optimize weights button, step navigation",
+        "Verify: complete workflows execute successfully, no console errors, state management works correctly"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    },
+    "AE-50": {
+      "exec_id": "",
+      "wave": 8,
+      "group": "quality",
+      "role": "ui-test-implementer",
+      "skill": "ui-testing",
+      "status": "pending",
+      "started_at": null,
+      "completed_at": null,
+      "declared_files": [
+        "Performance benchmark report:",
+        "Test datasets: 1K accounts, 5K accounts, 10K accounts",
+        "Metrics: allocation computation time, sensitivity chart generation time, UI render time",
+        "Target: \u003c200ms for allocation, \u003c2s for sensitivity chart",
+        "Test file: `app/src/lib/__tests__/performance.test.ts`",
+        "Document performance characteristics and optimization opportunities"
+      ],
+      "actual_files": [],
+      "undeclared_warnings": []
+    }
+  },
+  "summary": {
+    "total": 50,
+    "done": 30,
+    "failed": 0,
+    "pending": 20,
+    "warnings": 0
+  }
+}

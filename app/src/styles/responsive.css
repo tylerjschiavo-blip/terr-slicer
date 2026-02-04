@@ -1,0 +1,436 @@
+/**
+ * Responsive Layout Styles
+ * Task: AE-46 - Implement responsive layout adjustments
+ * 
+ * Breakpoints:
+ * - Mobile: < 768px (default)
+ * - Tablet: >= 768px
+ * - Desktop: >= 1024px
+ */
+
+/* =============================================================================
+   Sidebar Layout Responsive Styles
+   ============================================================================= */
+
+/**
+ * Mobile: Full-width sidebar that can be toggled/hidden
+ * Tablet/Desktop: Fixed width sidebar
+ */
+.responsive-sidebar-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(249 250 251); /* bg-gray-50 */
+}
+
+.responsive-sidebar {
+  width: 100%;
+  border-right: 1px solid rgb(229 231 235); /* border-gray-200 */
+  background-color: white;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.responsive-main-content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: rgb(249 250 251); /* bg-gray-50 */
+}
+
+/* Tablet and up: Fixed width sidebar */
+@media (min-width: 768px) {
+  .responsive-sidebar {
+    width: 20rem; /* w-80 = 320px */
+  }
+}
+
+/* =============================================================================
+   Card Grid Responsive Styles
+   ============================================================================= */
+
+/**
+ * Mobile: Stack cards vertically (1 column)
+ * Tablet: 2 columns
+ * Desktop: 3 columns
+ */
+.responsive-card-grid {
+  display: grid;
+  gap: 1.5rem; /* gap-6 */
+  margin-bottom: 2rem; /* mb-8 */
+}
+
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+  .responsive-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .responsive-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .responsive-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/**
+ * Two-column layout (for rep distribution charts)
+ * Mobile: Stack vertically (1 column)
+ * Tablet+: Side by side (2 columns)
+ */
+.responsive-two-column-grid {
+  display: grid;
+  gap: 1.5rem; /* gap-6 */
+}
+
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+  .responsive-two-column-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet and up: 2 columns */
+@media (min-width: 768px) {
+  .responsive-two-column-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =============================================================================
+   Table Responsive Styles
+   ============================================================================= */
+
+/**
+ * Mobile: Enable horizontal scroll for tables
+ * Desktop: Full width, no scroll
+ */
+.responsive-table-container {
+  background-color: white;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  overflow: hidden;
+  transition: box-shadow 200ms;
+}
+
+.responsive-table-container:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+}
+
+.responsive-table-scroll {
+  overflow-x: auto;
+  max-height: 675px;
+  overflow-y: auto;
+}
+
+/* Mobile: Ensure minimum touch target size and add scroll indicator */
+@media (max-width: 767px) {
+  .responsive-table-scroll {
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Add subtle scroll indicator shadow on mobile */
+  .responsive-table-scroll::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.05), transparent);
+    pointer-events: none;
+  }
+}
+
+/* Desktop: No horizontal scroll needed for most tables */
+@media (min-width: 1024px) {
+  .responsive-table-scroll {
+    overflow-x: visible;
+  }
+}
+
+/* =============================================================================
+   Chart Responsive Styles
+   ============================================================================= */
+
+/**
+ * Charts: Responsive sizing with appropriate heights
+ * Mobile: Smaller height, more compact
+ * Desktop: Larger height for better visibility
+ */
+.responsive-chart-container {
+  background-color: white;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  padding: 1.25rem; /* p-5 */
+  transition: box-shadow 200ms;
+}
+
+.responsive-chart-container:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+}
+
+.responsive-chart-height-small {
+  height: 180px;
+}
+
+.responsive-chart-height-medium {
+  height: 200px;
+}
+
+.responsive-chart-height-large {
+  height: 250px;
+}
+
+/* Mobile: Smaller chart heights */
+@media (max-width: 767px) {
+  .responsive-chart-height-small {
+    height: 160px;
+  }
+  
+  .responsive-chart-height-medium {
+    height: 180px;
+  }
+  
+  .responsive-chart-height-large {
+    height: 220px;
+  }
+}
+
+/* Tablet: Medium chart heights */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .responsive-chart-height-small {
+    height: 180px;
+  }
+  
+  .responsive-chart-height-medium {
+    height: 200px;
+  }
+  
+  .responsive-chart-height-large {
+    height: 240px;
+  }
+}
+
+/* Desktop: Larger chart heights */
+@media (min-width: 1024px) {
+  .responsive-chart-height-small {
+    height: 200px;
+  }
+  
+  .responsive-chart-height-medium {
+    height: 220px;
+  }
+  
+  .responsive-chart-height-large {
+    height: 280px;
+  }
+}
+
+/* =============================================================================
+   Touch Target Styles
+   ============================================================================= */
+
+/**
+ * Ensure minimum 44px touch targets on mobile for accessibility
+ * Following WCAG 2.1 Level AAA guidelines
+ */
+@media (max-width: 767px) {
+  /* Buttons */
+  button,
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Table headers (sortable) */
+  th[role="button"],
+  th.cursor-pointer {
+    min-height: 44px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  /* Select dropdowns */
+  select {
+    min-height: 44px;
+  }
+  
+  /* Checkboxes - ensure clickable area is large enough */
+  input[type="checkbox"] {
+    min-width: 20px;
+    min-height: 20px;
+  }
+  
+  /* Links in navigation */
+  nav a,
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Filter controls */
+  .filter-control {
+    min-height: 44px;
+  }
+}
+
+/* =============================================================================
+   Content Padding and Spacing
+   ============================================================================= */
+
+/**
+ * Mobile: Reduced padding for better space utilization
+ * Tablet/Desktop: Standard padding
+ */
+.responsive-content-padding {
+  padding: 1rem; /* p-4 */
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .responsive-content-padding {
+    padding: 2rem; /* p-8 */
+  }
+}
+
+/* =============================================================================
+   Filter Controls Responsive Layout
+   ============================================================================= */
+
+/**
+ * Filter controls: Stack on mobile, grid on desktop
+ */
+.responsive-filter-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Mobile: Stack vertically */
+@media (max-width: 767px) {
+  .responsive-filter-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .responsive-filter-grid > div:last-child {
+    display: flex;
+    justify-content: stretch;
+  }
+  
+  .responsive-filter-grid button {
+    width: 100%;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .responsive-filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 1024px) {
+  .responsive-filter-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* =============================================================================
+   Utility Classes
+   ============================================================================= */
+
+/**
+ * Hide on mobile
+ */
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/**
+ * Hide on tablet and up
+ */
+@media (min-width: 768px) {
+  .hide-tablet-up {
+    display: none !important;
+  }
+}
+
+/**
+ * Hide on desktop
+ */
+@media (min-width: 1024px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/**
+ * Show only on mobile
+ */
+.show-mobile-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .show-mobile-only {
+    display: none !important;
+  }
+}
+
+/**
+ * Responsive text sizing
+ */
+@media (max-width: 767px) {
+  .responsive-text-sm {
+    font-size: 0.875rem; /* text-sm */
+  }
+  
+  .responsive-text-base {
+    font-size: 0.875rem; /* text-sm on mobile */
+  }
+  
+  .responsive-text-lg {
+    font-size: 1rem; /* text-base on mobile */
+  }
+  
+  .responsive-text-xl {
+    font-size: 1.125rem; /* text-lg on mobile */
+  }
+  
+  .responsive-text-2xl {
+    font-size: 1.25rem; /* text-xl on mobile */
+  }
+  
+  .responsive-text-3xl {
+    font-size: 1.5rem; /* text-2xl on mobile */
+  }
+}
+
+/* =============================================================================
+   No Horizontal Scroll on Mobile
+   ============================================================================= */
+
+/**
+ * Prevent horizontal scroll on mobile (except for table overflow)
+ */
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  .responsive-main-content {
+    overflow-x: hidden;
+  }
+}

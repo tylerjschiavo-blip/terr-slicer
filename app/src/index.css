@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Custom theme for 5-band fairness color scale */
+@theme {
+  /* Fairness color scale */
+  --color-fairness-excellent: #10b981;
+  --color-fairness-excellent-light: #34d399;
+  --color-fairness-excellent-dark: #059669;
+  
+  --color-fairness-good: #84cc16;
+  --color-fairness-good-light: #a3e635;
+  --color-fairness-good-dark: #65a30d;
+  
+  --color-fairness-fair: #eab308;
+  --color-fairness-fair-light: #facc15;
+  --color-fairness-fair-dark: #ca8a04;
+  
+  --color-fairness-poor: #f97316;
+  --color-fairness-poor-light: #fb923c;
+  --color-fairness-poor-dark: #ea580c;
+  
+  --color-fairness-very-poor: #ef4444;
+  --color-fairness-very-poor-light: #f87171;
+  --color-fairness-very-poor-dark: #dc2626;
+
+  /* Primary color scale for project branding */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+  --color-primary-950: #082f49;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}

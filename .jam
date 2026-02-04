@@ -1,0 +1,14 @@
+# Terr Slicer - Jam Configuration
+# Created by project-initializer
+
+# Path to shared jam installation (relative to this file)
+jam_path: ../jam
+
+packs:
+  include:
+    - packs/roles/**
+    - packs/skills/**
+    - packs/rules/**
+    - packs/patterns/**
+    - packs/personalities/**
+  local: jam/packs

@@ -1,0 +1,55 @@
+{
+  "session": {
+    "id": "test-session",
+    "start_time": "2026-02-02T17:09:15.758132Z",
+    "log_file": "/Users/annschiavo/tyler_projects/terr-slicer/logs/20260202170915-tes.json"
+  },
+  "entries": [
+    {
+      "timestamp": "2026-02-02T17:09:15.759519Z",
+      "command": "get",
+      "artifact_ref": "@jam:role/jam-master",
+      "resolved_path": "/Users/annschiavo/tyler_projects/jam/packs/roles/jam-master/jam-master.role.riff.md",
+      "partials_expanded": [
+        "@jam:role/root",
+        "@jam:personality/collaborative",
+        "@jam:personality/curious",
+        "@jam:personality/thorough",
+        "@jam:personality/efficient",
+        "@jam:personality/explicit",
+        "@jam:personality/suggestive",
+        "@jam:personality/clever",
+        "@jam:personality/creative",
+        "@jam:personality/insightful",
+        "@jam:personality/playful",
+        "./skills/session-management.skill.riff.md",
+        "./rules/folder-lifecycle.rule.riff.md",
+        "./rules/jam-menu.rule.riff.md",
+        "./rules/handoff-protocol.rule.riff.md",
+        "./rules/personality-handling.rule.riff.md"
+      ],
+      "content_hash": "sha256:44e77d181d89a99c"
+    },
+    {
+      "timestamp": "2026-02-02T17:10:32.627038Z",
+      "command": "get",
+      "artifact_ref": "@jam:role/idea-writer",
+      "resolved_path": "/Users/annschiavo/tyler_projects/jam/packs/roles/idea/idea-writer.role.riff.md",
+      "partials_expanded": [
+        "@jam:role/root",
+        "@jam:personality/collaborative",
+        "@jam:personality/curious",
+        "@jam:personality/thorough",
+        "@jam:personality/efficient",
+        "@jam:personality/explicit",
+        "@jam:personality/suggestive",
+        "@jam:personality/clever",
+        "@jam:personality/creative",
+        "@jam:personality/insightful",
+        "@jam:personality/playful",
+        "./skills/ideation.skill.riff.md"
+      ],
+      "content_hash": "sha256:dbba0e0550d58a05"
+    }
+  ]
+}

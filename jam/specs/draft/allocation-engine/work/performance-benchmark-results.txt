@@ -1,0 +1,232 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+npm warn exec The following package was not found and will be installed: tsx@4.21.0
+═══════════════════════════════════════════════════════════════
+  TERRITORY ALLOCATION ENGINE - PERFORMANCE BENCHMARK REPORT
+═══════════════════════════════════════════════════════════════
+
+Date: 2/3/2026, 8:59:48 PM
+Iterations per test: 5
+Node version: v25.5.0
+
+
+═══════════════════════════════════════════════════════════════
+  1. ALLOCATION COMPUTATION (allocateAccounts)
+═══════════════════════════════════════════════════════════════
+
+▶ Testing with 1,000 accounts (20 reps, ~50 accounts/rep)
+
+  Running Allocation - 1K accounts...
+    Iteration 1: 3.19ms
+    Iteration 2: 2.80ms
+    Iteration 3: 0.93ms
+    Iteration 4: 1.33ms
+    Iteration 5: 1.02ms
+  ✓ PASS | avg: 1.86ms (0.9% of target 200ms) | min: 0.93ms | max: 3.19ms | median: 1.33ms
+
+▶ Testing with 5,000 accounts (100 reps, ~50 accounts/rep)
+
+  Running Allocation - 5K accounts...
+    Iteration 1: 15.20ms
+    Iteration 2: 11.84ms
+    Iteration 3: 12.17ms
+    Iteration 4: 10.80ms
+    Iteration 5: 15.89ms
+  ✓ PASS | avg: 13.18ms (2.6% of target 500ms) | min: 10.80ms | max: 15.89ms | median: 12.17ms
+
+▶ Testing with 10,000 accounts (200 reps, ~50 accounts/rep)
+
+  Running Allocation - 10K accounts...
+    Iteration 1: 43.82ms
+    Iteration 2: 40.11ms
+    Iteration 3: 37.10ms
+    Iteration 4: 36.89ms
+    Iteration 5: 37.00ms
+  ✓ PASS | avg: 38.98ms (3.9% of target 1000ms) | min: 36.89ms | max: 43.82ms | median: 37.10ms
+
+
+═══════════════════════════════════════════════════════════════
+  2. SENSITIVITY CHART GENERATION (generateSensitivityData)
+═══════════════════════════════════════════════════════════════
+
+▶ Testing with 1,000 accounts (20 reps)
+
+  Running Sensitivity - 1K accounts...
+    Iteration 1: 42.10ms
+    Iteration 2: 37.69ms
+    Iteration 3: 38.21ms
+    Iteration 4: 37.49ms
+    Iteration 5: 37.19ms
+  ✓ PASS | avg: 38.54ms (1.9% of target 2000ms) | min: 37.19ms | max: 42.10ms | median: 37.69ms
+
+▶ Testing with 5,000 accounts (100 reps)
+
+  Running Sensitivity - 5K accounts...
+    Iteration 1: 576.08ms
+    Iteration 2: 569.52ms
+    Iteration 3: 553.16ms
+    Iteration 4: 575.81ms
+    Iteration 5: 566.93ms
+  ✓ PASS | avg: 568.30ms (11.4% of target 5000ms) | min: 553.16ms | max: 576.08ms | median: 569.52ms
+
+
+═══════════════════════════════════════════════════════════════
+  3. AUDIT TRAIL GENERATION (generateAuditTrail)
+═══════════════════════════════════════════════════════════════
+
+▶ Testing with 1,000 accounts (20 reps)
+
+  Running Audit Trail - 1K accounts...
+    Iteration 1: 3.22ms
+    Iteration 2: 1.81ms
+    Iteration 3: 1.90ms
+    Iteration 4: 1.52ms
+    Iteration 5: 1.51ms
+  ✓ PASS | avg: 1.99ms (0.4% of target 500ms) | min: 1.51ms | max: 3.22ms | median: 1.81ms
+
+▶ Testing with 5,000 accounts (100 reps)
+
+  Running Audit Trail - 5K accounts...
+    Iteration 1: 42.22ms
+    Iteration 2: 37.86ms
+    Iteration 3: 33.50ms
+    Iteration 4: 32.83ms
+    Iteration 5: 33.58ms
+  ✓ PASS | avg: 36.00ms (1.8% of target 2000ms) | min: 32.83ms | max: 42.22ms | median: 33.58ms
+
+▶ Testing with 10,000 accounts (200 reps)
+
+  Running Audit Trail - 10K accounts...
+    Iteration 1: 154.15ms
+    Iteration 2: 655.67ms
+    Iteration 3: 283.28ms
+    Iteration 4: 148.28ms
+    Iteration 5: 146.17ms
+  ✓ PASS | avg: 277.51ms (5.6% of target 5000ms) | min: 146.17ms | max: 655.67ms | median: 154.15ms
+
+
+═══════════════════════════════════════════════════════════════
+  4. FAIRNESS CALCULATION (calculateSegmentBasedFairness)
+═══════════════════════════════════════════════════════════════
+
+▶ Testing with 1,000 accounts (20 reps)
+
+  Running Fairness - 1K accounts...
+    Iteration 1: 0.70ms
+    Iteration 2: 0.51ms
+    Iteration 3: 0.48ms
+    Iteration 4: 0.48ms
+    Iteration 5: 0.61ms
+  ✓ PASS | avg: 0.56ms (0.6% of target 100ms) | min: 0.48ms | max: 0.70ms | median: 0.51ms
+
+▶ Testing with 5,000 accounts (100 reps)
+
+  Running Fairness - 5K accounts...
+    Iteration 1: 3.88ms
+    Iteration 2: 3.81ms
+    Iteration 3: 3.79ms
+    Iteration 4: 3.63ms
+    Iteration 5: 3.89ms
+  ✓ PASS | avg: 3.80ms (1.3% of target 300ms) | min: 3.63ms | max: 3.89ms | median: 3.81ms
+
+▶ Testing with 10,000 accounts (200 reps)
+
+  Running Fairness - 10K accounts...
+    Iteration 1: 11.69ms
+    Iteration 2: 11.18ms
+    Iteration 3: 11.53ms
+    Iteration 4: 10.83ms
+    Iteration 5: 11.17ms
+  ✓ PASS | avg: 11.28ms (2.3% of target 500ms) | min: 10.83ms | max: 11.69ms | median: 11.18ms
+
+
+═══════════════════════════════════════════════════════════════
+  5. END-TO-END PERFORMANCE (Complete Allocation Flow)
+═══════════════════════════════════════════════════════════════
+
+▶ Testing complete flow with 1,000 accounts (20 reps)
+  (Allocation → Fairness → Sensitivity → Audit Trail)
+
+  Iteration 1:
+    Allocation:   0.70ms
+    Fairness:     0.54ms
+    Sensitivity:  39.32ms
+    Audit Trail:  1.67ms
+    Total:        42.24ms
+
+  Iteration 2:
+    Allocation:   0.89ms
+    Fairness:     0.52ms
+    Sensitivity:  38.85ms
+    Audit Trail:  1.08ms
+    Total:        41.34ms
+
+  Iteration 3:
+    Allocation:   0.56ms
+    Fairness:     0.46ms
+    Sensitivity:  39.04ms
+    Audit Trail:  1.28ms
+    Total:        41.33ms
+
+  Iteration 4:
+    Allocation:   0.55ms
+    Fairness:     0.44ms
+    Sensitivity:  37.55ms
+    Audit Trail:  1.10ms
+    Total:        39.65ms
+
+  Iteration 5:
+    Allocation:   0.54ms
+    Fairness:     0.42ms
+    Sensitivity:  37.81ms
+    Audit Trail:  1.11ms
+    Total:        39.89ms
+
+  Average Times:
+    Allocation:   0.65ms
+    Fairness:     0.48ms
+    Sensitivity:  38.52ms
+    Audit Trail:  1.25ms
+    Total:        40.89ms
+
+
+═══════════════════════════════════════════════════════════════
+  SUMMARY
+═══════════════════════════════════════════════════════════════
+
+Total Tests: 11
+Passed: 11 (100.0%)
+Failed: 0
+
+
+Allocation:
+  ✓ 1K accounts: 1.86ms (0.9% of 200ms target)
+  ✓ 5K accounts: 13.18ms (2.6% of 500ms target)
+  ✓ 10K accounts: 38.98ms (3.9% of 1000ms target)
+
+Sensitivity:
+  ✓ 1K accounts: 38.54ms (1.9% of 2000ms target)
+  ✓ 5K accounts: 568.30ms (11.4% of 5000ms target)
+
+Audit Trail:
+  ✓ 1K accounts: 1.99ms (0.4% of 500ms target)
+  ✓ 5K accounts: 36.00ms (1.8% of 2000ms target)
+  ✓ 10K accounts: 277.51ms (5.6% of 5000ms target)
+
+Fairness:
+  ✓ 1K accounts: 0.56ms (0.6% of 100ms target)
+  ✓ 5K accounts: 3.80ms (1.3% of 300ms target)
+  ✓ 10K accounts: 11.28ms (2.3% of 500ms target)
+
+
+═══════════════════════════════════════════════════════════════
+  OPTIMIZATION OPPORTUNITIES
+═══════════════════════════════════════════════════════════════
+
+✓ All performance targets met!
+  No immediate optimizations required.
+
+
+═══════════════════════════════════════════════════════════════
+  END OF REPORT
+═══════════════════════════════════════════════════════════════
+

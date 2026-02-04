@@ -1,0 +1,16 @@
+# Jam Bootstrap for Terr Slicer
+
+Look for `.jam` file to confirm this is a jam-enabled project.
+
+Load and follow the jam-master role from the shared jam installation.
+The jam_path in .jam points to where jam packs are located.
+
+# Artifact Access
+
+When accessing jam artifacts (roles, skills, rules, patterns), use the jam CLI:
+
+1. Start a session: `jam session start --context="..."`
+2. List artifacts:  `jam list roles|skills|rules|patterns`
+3. Get artifact:    `jam get --session=<id> @project:type/name`
+
+Always use the full @project:type/name format (e.g., @jam:role/go-implementer).
