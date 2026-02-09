@@ -29,6 +29,10 @@ export function OptimizeWeightsButton() {
   const preserveBonus = useAllocationStore((state) => state.preserveBonus);
   const highRiskThreshold = useAllocationStore((state) => state.highRiskThreshold);
   const fairnessMetrics = useAllocationStore((state) => state.fairnessMetrics);
+  const enterpriseCapEnabled = useAllocationStore((state) => state.enterpriseCapEnabled);
+  const enterpriseCapValue = useAllocationStore((state) => state.enterpriseCapValue);
+  const midMarketCapEnabled = useAllocationStore((state) => state.midMarketCapEnabled);
+  const midMarketCapValue = useAllocationStore((state) => state.midMarketCapValue);
 
   // Check if data is available
   const hasData = accounts.length > 0 && reps.length > 0;
@@ -45,13 +49,17 @@ export function OptimizeWeightsButton() {
     // Run optimization in a timeout to allow UI to update with loading state
     setTimeout(() => {
       try {
+        const enterpriseCap = enterpriseCapEnabled ? enterpriseCapValue : null;
+        const midMarketCap = midMarketCapEnabled ? midMarketCapValue : null;
         const result = optimizeWeights(
           accounts,
           reps,
           threshold,
           geoMatchBonus,
           preserveBonus,
-          highRiskThreshold
+          highRiskThreshold,
+          enterpriseCap,
+          midMarketCap
         );
 
         setOptimizationResult(result);

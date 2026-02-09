@@ -47,7 +47,13 @@ interface ConfigSlice {
   geoMatchBonus: number;
   preserveBonus: number;
   highRiskThreshold: number;
-  
+  /** Optimization: cap Enterprise ARR max/min ratio (null = off) */
+  enterpriseCapEnabled: boolean;
+  enterpriseCapValue: number;
+  /** Optimization: cap Mid Market ARR max/min ratio (null = off) */
+  midMarketCapEnabled: boolean;
+  midMarketCapValue: number;
+
   // Actions
   updateConfig: (config: Partial<Omit<ConfigSlice, 'updateConfig' | 'setWeights'>>) => void;
   setWeights: (arrWeight: number, accountWeight: number, riskWeight: number) => void;
@@ -132,7 +138,11 @@ export const useAllocationStore = create<AllocationStore>()(
   geoMatchBonus: 0.05,
   preserveBonus: 0.05,
   highRiskThreshold: 70,
-  
+  enterpriseCapEnabled: false,
+  enterpriseCapValue: 1.0,
+  midMarketCapEnabled: false,
+  midMarketCapValue: 1.0,
+
   // Config Slice Actions
   updateConfig: (config) => set(config),
   
@@ -232,6 +242,10 @@ export const useAllocationStore = create<AllocationStore>()(
         geoMatchBonus: state.geoMatchBonus,
         preserveBonus: state.preserveBonus,
         highRiskThreshold: state.highRiskThreshold,
+        enterpriseCapEnabled: state.enterpriseCapEnabled,
+        enterpriseCapValue: state.enterpriseCapValue,
+        midMarketCapEnabled: state.midMarketCapEnabled,
+        midMarketCapValue: state.midMarketCapValue,
         // Persist allocation results
         results: state.results,
         fairnessMetrics: state.fairnessMetrics,

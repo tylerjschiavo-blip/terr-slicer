@@ -71,6 +71,11 @@ export function OptimizeWeightsModal({
           <DialogTitle>Optimize Weights Results</DialogTitle>
           <DialogDescription>
             Recommended weight configuration for maximum Balanced fairness at current threshold.
+            {!recommendedWeights.constraintsMet && (
+              <span className="block mt-2 text-amber-700 text-sm">
+                No weight combination met your Optimization caps; showing the best overall result.
+              </span>
+            )}
           </DialogDescription>
         </DialogHeader>
 

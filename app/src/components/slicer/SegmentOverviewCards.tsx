@@ -55,6 +55,8 @@ interface FairnessMetrics {
   arrRange: { min: number; max: number } | null;
   accountRange: { min: number; max: number } | null;
   riskRange: { min: number; max: number } | null;
+  /** ARR max/min ratio (max rep ARR / min rep ARR); null if min is 0 or no data */
+  arrMaxMinRatio: number | null;
 }
 
 function calculateSegmentMetrics(
@@ -113,6 +115,7 @@ function calculateSegmentFairness(
       arrRange: null,
       accountRange: null,
       riskRange: null,
+      arrMaxMinRatio: null,
     };
   }
 
@@ -191,6 +194,9 @@ function calculateSegmentFairness(
   const customComposite = calculateCustomComposite(arrFairness, accountFairness, riskFairness, weights);
   const balancedComposite = calculateBalancedComposite(arrFairness, accountFairness, riskFairness);
 
+  const arrMaxMinRatio =
+    arrRange && arrRange.min > 0 ? arrRange.max / arrRange.min : null;
+
   return {
     arrFairness,
     accountFairness,
@@ -200,6 +206,7 @@ function calculateSegmentFairness(
     arrRange,
     accountRange,
     riskRange,
+    arrMaxMinRatio,
   };
 }
 
@@ -428,6 +435,16 @@ function SegmentOverviewCard({
                 )}
               </div>
             </div>
+
+            {/* ARR Max/Min Ratio - segment cards only */}
+            {!isTotal && segmentName && (
+              <div className="flex justify-between items-center pt-2 border-t border-gray-100">
+                <span className="text-gray-600 text-xs">ARR Max/Min</span>
+                <span className="font-medium text-gray-900 text-sm">
+                  {fairness.arrMaxMinRatio != null ? formatComparisonRatio(fairness.arrMaxMinRatio, 2) : 'N/A'}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -544,6 +561,7 @@ function SegmentOverviewCards() {
       arrRange: null,
       accountRange: null,
       riskRange: null,
+      arrMaxMinRatio: null,
     };
 
     return {

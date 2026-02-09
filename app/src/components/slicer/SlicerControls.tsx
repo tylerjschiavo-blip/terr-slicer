@@ -8,6 +8,7 @@ import { OptimizeWeightsButton } from './OptimizeWeightsButton';
 import ThresholdSlider from './ThresholdSlider';
 import { BalanceWeightSliders } from './BalanceWeightSliders';
 import { PreferenceSliders } from './PreferenceSliders';
+import { OptimizationCaps } from './OptimizationCaps';
 import { ExportButton } from '@/components/common/ExportButton';
 import { useAllocationStore } from '@/store/allocationStore';
 
@@ -81,6 +82,17 @@ function SlicerControls() {
       {/* Balance Weight Sliders - Task AE-22 */}
       <div className="bg-white rounded-lg border border-gray-200 p-3">
         <BalanceWeightSliders />
+      </div>
+
+      <div className="border-t border-gray-300 pt-4">
+        <h3 className="text-xs font-medium text-gray-700 mb-3 uppercase tracking-wide">
+          Optimization
+        </h3>
+      </div>
+
+      {/* Optimization caps: Enterprise / Mid Market max-min ratio */}
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <OptimizationCaps />
       </div>
 
       <div className="border-t border-gray-300 pt-4"></div>

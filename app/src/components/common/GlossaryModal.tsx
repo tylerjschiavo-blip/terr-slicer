@@ -61,7 +61,7 @@ export default function GlossaryModal({
                   <hr className="border-0 border-t border-[#ddd] my-6" />
                 ),
                 blockquote: ({ children }) => (
-                  <blockquote className="my-3 pl-3 border-l-4 border-gray-600 italic text-[#222]">
+                  <blockquote className="my-4 py-3 px-4 rounded-md border-l-4 border-amber-500 bg-amber-50 text-[#222] not-italic">
                     {children}
                   </blockquote>
                 ),
